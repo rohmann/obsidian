@@ -8,7 +8,23 @@ $webroot_dir = $root_dir . '/web';
 $dotenv = new Dotenv\Dotenv($root_dir);
 if (file_exists($root_dir . '/.env')) {
   $dotenv->load();
-  $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL']);
+  $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_SITEURL']);
+}
+
+if ( !getenv('WP_HOME') ) {
+	$home_url = 'http://' . $_SERVER['HTTP_HOST'];
+	putenv("WP_HOME=$home_url");
+  $_ENV['WP_HOME'] = $home_url;
+  $_SERVER['WP_HOME'] = $home_url;
+  unset($home_url);
+}
+
+if ( !getenv('WP_SITEURL') ) {
+	$site_url = 'http://' . $_SERVER['HTTP_HOST'] . '/wp';
+	putenv("WP_SITEURL=$site_url");
+  $_ENV['WP_SITEURL'] = $site_url;
+  $_SERVER['WP_SITEURL'] = $site_url;
+  unset($site_url);
 }
 
 /**
