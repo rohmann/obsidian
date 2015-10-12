@@ -1,41 +1,71 @@
-# Obsidian
-Obsidian is a [Bedrock](https://github.com/roots/bedrock) based WordPress
-development environment with product (plugins/themes) development in mind.
-**Having used Bedrock before will help you understand the concepts and workflow
-presented by this project**
+# [Bedrock](https://roots.io/bedrock/)
+[![Build Status](https://travis-ci.org/roots/bedrock.svg)](https://travis-ci.org/roots/bedrock)
 
-The main concept is that you can store your plugin/theme repositories anywhere
-you want, and have them symlinked into your WordPress installation. Being based
-on Bedrock, you can also leverage composer and packagist to quickly provision
-your development plugins.
+Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
 
-## Quick Setup
+Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
 
-1. Clone/fork obsidian anywhere you like.
-2. Have a database ready, and configure your web server to serve the `/web` folder.
-3. Copy `.env.example` to `.env` and add your database credentials.
-4. Update `projects.yml` with paths to your project repositories.
-5. Run the provisioner: `./provision.sh` This installs WordPress and links in your projects.
-6. Run `composer install` to install development plugins.
+## Features
 
-## Concepts
+* Better folder structure
+* Dependency management with [Composer](http://getcomposer.org)
+* Easy WordPress configuration with environment specific files
+* Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
+* Autoloader for mu-plugins (use regular plugins as mu-plugins)
 
-#### Separate your repos from your WordPress installation
-When working on multiple projects, it can be difficult to keep your files organized.
-Obsidian is designed so you can manage version controlled projects out of their
-own directories, and have those plugins and themes symlinked into the appropriate
-locations within the WordPress folder structure.
+Use [Trellis](https://github.com/roots/trellis) for additional features:
 
-#### Composer support
-Modify `composer.json` with the plugins you wish to have on hand, and begin
-customizing Obsidian to your specific needs.
+* Easy development environments with [Vagrant](http://www.vagrantup.com/)
+* Easy server provisioning with [Ansible](http://www.ansible.com/) (Ubuntu 14.04, PHP 5.6 or HHVM, MariaDB)
+* One-command deploys
 
-#### Use WordPress trunk.
-Obsidian will clone WordPress truck into your `web/wp` folder. This is particularly
-handy because you can quickly checkout different tags to test your product with
-various WordPress releases. By keeping this repo up to date, you also test
-with the latest developments before an official WordPress release.
+See a complete working example in the [roots-example-project.com repo](https://github.com/roots/roots-example-project.com).
 
-#### Differences from Bedrock
-- The `WP_HOME` and `WP_SITEURL` environment variables don't need to be specified and are set dynamically. You'll need to set them in `.env` if you want to enforce a specific URL, or use https.
-- Composer doesn't install WordPress. Instead, we're cloning the official GitHub mirror of WordPress trunk.
+## Requirements
+
+* PHP >= 5.5
+* Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
+
+## Installation
+
+1. Clone the git repo - `git clone https://github.com/roots/bedrock.git`
+2. Run `composer install`
+3. Copy `.env.example` to `.env` and update environment variables:
+  * `DB_NAME` - Database name
+  * `DB_USER` - Database user
+  * `DB_PASSWORD` - Database password
+  * `DB_HOST` - Database host
+  * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
+  * `WP_HOME` - Full URL to WordPress home (http://example.com)
+  * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
+4. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
+4. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
+5. Access WP admin at `http://example.com/wp/wp-admin`
+
+## Deploys
+
+There are two methods to deploy Bedrock sites out of the box:
+
+* [Trellis](https://github.com/roots/trellis)
+* [bedrock-capistrano](https://github.com/roots/bedrock-capistrano)
+
+Any other deployment method can be used as well with one requirement:
+
+`composer install` must be run as part of the deploy process.
+
+## Documentation
+
+Bedrock documentation is available at [https://roots.io/bedrock/docs/](https://roots.io/bedrock/docs/).
+
+## Contributing
+
+Contributions are welcome from everyone. We have [contributing guidelines](CONTRIBUTING.md) to help you get started.
+
+## Community
+
+Keep track of development and community news.
+
+* Participate on the [Roots Discourse](https://discourse.roots.io/)
+* Follow [@rootswp on Twitter](https://twitter.com/rootswp)
+* Read and subscribe to the [Roots Blog](https://roots.io/blog/)
+* Subscribe to the [Roots Newsletter](https://roots.io/subscribe/)
