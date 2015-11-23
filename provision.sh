@@ -35,3 +35,6 @@ git fetch
 git fetch --tags
 git checkout master
 git pull origin master
+
+cd $obsidian_path
+composer install
