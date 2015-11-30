@@ -3,7 +3,7 @@ obsidian_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 setup_projects() {
 	local app=$obsidian_path"/web/app/"
-  local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
+  local s='[[:space:]]*' w='[a-zA-Z0-9_\-]*' fs=$(echo @|tr @ '\034')
   # yaml parsing based on: https://gist.github.com/pkuczynski/8665367
   for i in $(sed -ne "s|^\($s\)\($w\)$s:$s\"\(.*\)\"$s\$|\1$fs\2$fs\3|p" \
     -e "s|^\($s\)\($w\)$s:$s\(.*\)$s\$|\1$fs\2$fs\3|p"  $1 |
