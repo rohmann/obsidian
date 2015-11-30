@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 obsidian_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+clean_symlinks() {
+	local dir=$obsidian_path"/web/app/$1"
+
+  local d='[[:digit:]]' s='[[:space:]]*' w='[a-zA-Z0-9_\-]*' fs=$(echo @|tr @ '\034')
+	for i in $( ls -la --time-style=iso $dir | sed -ne "s|^l.*$d:$d$d$s\($w\).*|\1|p" )
+	do
+		rm "$dir/$i"
+	done
+}
+clean_symlinks 'plugins'
+clean_symlinks 'themes'
+
 setup_projects() {
 	local app=$obsidian_path"/web/app/"
   local s='[[:space:]]*' w='[a-zA-Z0-9_\-]*' fs=$(echo @|tr @ '\034')
