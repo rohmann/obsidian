@@ -1,0 +1,5 @@
+plugins:
+	myplugin: "/Users/username/repos/vendor/plugin-project"
+	anotherplugin: "/Users/username/repos/somebody/another-plugin"
+themes:
+	mytheme: "/Users/username/repos/vendor/theme-project"
