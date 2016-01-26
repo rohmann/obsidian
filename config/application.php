@@ -11,7 +11,7 @@ if (file_exists($root_dir . '/.env')) {
   $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_SITEURL']);
 }
 
-if ( !getenv('WP_HOME') ) {
+if ( !getenv('WP_HOME') && isset( $_SERVER['HTTP_HOST'] ) ) {
 	$home_url = 'http://' . $_SERVER['HTTP_HOST'];
 	putenv("WP_HOME=$home_url");
   $_ENV['WP_HOME'] = $home_url;
@@ -19,7 +19,7 @@ if ( !getenv('WP_HOME') ) {
   unset($home_url);
 }
 
-if ( !getenv('WP_SITEURL') ) {
+if ( !getenv('WP_SITEURL') && isset( $_SERVER['HTTP_HOST'] ) ) {
 	$site_url = 'http://' . $_SERVER['HTTP_HOST'] . '/wp';
 	putenv("WP_SITEURL=$site_url");
   $_ENV['WP_SITEURL'] = $site_url;
