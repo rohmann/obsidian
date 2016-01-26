@@ -8,5 +8,5 @@ on Bedrock, you can also leverage composer and packagist to quickly provision
 your development plugins.
 
 1. Copy `.env.example` to `.env` and configure your environment variables (just like bedrock).
-2. Update `projects.yml` with paths to your project repositories.
+2. Copy `projects.example.yml` to `projects.yml` and setup paths to your project repositories.
 3. Run the provisioner: `./provision.sh`
