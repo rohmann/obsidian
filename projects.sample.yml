@@ -1,3 +1,7 @@
+# Copy to projects.yml
+# Setup paths to your local plugin and theme repositories, and running
+# provisions.sh will generate symlinks to the corresponding WordPress folders.
+
 plugins:
 	myplugin: "/Users/username/repos/vendor/plugin-project"
 	anotherplugin: "/Users/username/repos/somebody/another-plugin"
