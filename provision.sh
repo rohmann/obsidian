@@ -45,8 +45,12 @@ cd $obsidian_path"/web/wp"
 echo "Fetching tags..."
 git fetch
 git fetch --tags
+echo "Pulling latest commits..."
 git checkout master
 git pull origin master
+echo "Checking out latest tag..."
+latest_tag="$(git tag -l --sort=version:refname | tail -1)"
+git checkout tags/$latest_tag
 
 cd $obsidian_path
 composer install
