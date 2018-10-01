@@ -1,20 +1,13 @@
 <?php
 
-function print_json( $data ) {
-	echo json_encode( $data, JSON_PRETTY_PRINT );
-}
-
 if ( ! function_exists('dd') ) :
-	function dd( $data ) {
+	function dd( $data, $pre = true ) {
+		echo '<pre>';
 		var_dump( $data );
+		echo '</pre>';
 		die();
 	}
 endif;
-
-function jsond( $data ) {
-	print_json( $data );
-	die();
-}
 
 function obsidian_log_clear() {
 	unlink(ABSPATH . "../obsidian.log");

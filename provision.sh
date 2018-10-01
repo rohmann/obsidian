@@ -33,7 +33,6 @@ setup_projects() {
 		echo "Linking ${target} to ${destination}";
 	done
 }
-setup_projects projects.yml
 
 if [ ! -d "$obsidian_path/web/wp" ]; then
 	echo "Cloning WordPress..."
@@ -54,3 +53,5 @@ git checkout tags/$latest_tag
 
 cd $obsidian_path
 composer install
+
+setup_projects projects.yml
