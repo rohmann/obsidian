@@ -2,10 +2,8 @@
 obsidian_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 clean_symlinks() {
-	local dir=$obsidian_path"/web/app/$1"
-
-  local d='[[:digit:]]' s='[[:space:]]*' w='[a-zA-Z0-9_\-]*' fs=$(echo @|tr @ '\034')
-	for i in $( ls -la --time-style=iso $dir | sed -ne "s|^l.*$d:$d$d$s\($w\).*|\1|p" )
+	local dir=$obsidian_path"/web/app/$1"	
+	for i in $( ls -laT $dir | sed -ne "s|^l.*[[:space:]]\([a-zA-Z0-9_\-]*\)[[:space:]]->.*|\1|p" )
 	do
 		rm "$dir/$i"
 	done
@@ -28,9 +26,9 @@ setup_projects() {
     }
  	}'| cat)
 	do
-		IFS=, read target destination <<< $i
-		ln -sfn $target $destination
-		echo "Linking ${target} to ${destination}";
+		IFS=, read link <<< $i
+		ln -sfn $link
+		echo "Linking ${link}";
 	done
 }
 
