@@ -1,4 +1,13 @@
 <?php
+/*
+Plugin Name:  Debug Helpers
+Plugin URI:   
+Description:  Misc functions I use to troubleshoot
+Version:      1.0.0
+Author:       
+Author URI:   
+*/
+
 
 if ( ! function_exists('dd') ) :
 	function dd( $data, $pre = true ) {
