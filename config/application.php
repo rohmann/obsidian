@@ -31,7 +31,7 @@ if (file_exists($root_dir . '/.env')) {
 }
 
 if ( !env('WP_HOME') && isset( $_SERVER['HTTP_HOST'] ) ) {
-	$home_url = 'http://' . $_SERVER['HTTP_HOST'];
+	$home_url = 'https://' . $_SERVER['HTTP_HOST'];
 	putenv("WP_HOME=$home_url");
   $_ENV['WP_HOME'] = $home_url;
   $_SERVER['WP_HOME'] = $home_url;
@@ -39,7 +39,7 @@ if ( !env('WP_HOME') && isset( $_SERVER['HTTP_HOST'] ) ) {
 }
 
 if ( !env('WP_SITEURL') && isset( $_SERVER['HTTP_HOST'] ) ) {
-	$site_url = 'http://' . $_SERVER['HTTP_HOST'] . '/wp';
+	$site_url = 'https://' . $_SERVER['HTTP_HOST'] . '/wp';
 	putenv("WP_SITEURL=$site_url");
   $_ENV['WP_SITEURL'] = $site_url;
   $_SERVER['WP_SITEURL'] = $site_url;
